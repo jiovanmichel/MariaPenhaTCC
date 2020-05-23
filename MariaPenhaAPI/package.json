@@ -1,0 +1,20 @@
+{
+  "name": "mariapenhaapi",
+  "version": "1.0.0",
+  "description": "Projeto API/Sistema para Monografia Jiovan (Maria da Penha)",
+  "main": "app.js",
+  "scripts": {
+    "start": "nodemon app.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Jiovan",
+  "license": "ISC",
+  "dependencies": {
+    "@hapi/joi": "^17.1.1",
+    "express": "^4.17.1",
+    "mongoose": "^5.9.15"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.4"
+  }
+}
