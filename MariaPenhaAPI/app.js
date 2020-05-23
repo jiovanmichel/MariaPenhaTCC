@@ -9,5 +9,5 @@ app.use(express.json());
 
 app.use('/usuarios', require('./src/router/usuarios'));
 app.use('/duvidas', require('./src/router/duvidas'));
-console.log('teste')
+console.log('teste rebase')
 app.listen(3000);
