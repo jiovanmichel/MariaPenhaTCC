@@ -14,19 +14,13 @@ module.exports = class ValidateUsuarioSchema {
     }
 
     validateNome(nome){
-        const nomeValidate = Joi.object({
-            nome: Joi.string().min(5).max(100).required(),
-        });
-        
-        return nomeValidate.validate({nome});
+        const nomeValidate = Joi.string().min(5).max(100).required();
+        return nomeValidate.validate(nome);
     }
 
     validateEmail(email){
-        const emailValidate = Joi.object({
-            email: Joi.string().email({ minDomainSegments: 2, tlds: { allow: ['com', 'net'] } }).required(),
-        });
-        
-        return emailValidate.validate({email});
+        const emailValidate = Joi.string().email({ minDomainSegments: 2, tlds: { allow: ['com', 'net'] } }).required();
+        return emailValidate.validate(email);
     }
 
     validateSenha(senha, confirmarSenha){
@@ -39,10 +33,7 @@ module.exports = class ValidateUsuarioSchema {
     }
 
     validateStatus(status){
-        const statusValidate = Joi.object({
-            status: Joi.boolean()
-        });
-        
-        return statusValidate.validate({status});
+        const statusValidate = Joi.boolean();
+        return statusValidate.validate(status);
     }
 }

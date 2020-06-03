@@ -29,7 +29,7 @@ module.exports = class ContatoService {
         return await ContatoModel.create(contato);
     }
 
-    async update(contatoId, contatoParams){
+    async update(contatoId, contatoParams){      
         const {error, value: contato} = this.validarContato(contatoParams)
         
         if (error) return error.details;

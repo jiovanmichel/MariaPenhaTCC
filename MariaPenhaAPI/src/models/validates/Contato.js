@@ -14,43 +14,28 @@ module.exports = class ValidateContatoSchema {
     }
 
     validateNome(nome){
-        const nomeValidate = Joi.object({
-            nome: Joi.string().min(5).max(100).required(),
-        });
-        
-        return nomeValidate.validate({nome});
+        const nomeValidate = Joi.string().min(5).max(100).required();
+        return nomeValidate.validate(nome);
     }
 
     validateTelefone(telefone){
-        const telefoneValidate = Joi.object({
-            telefone: Joi.string().min(10).required()
-        })
-
-        return telefoneValidate.validate({telefone});
+        const telefoneValidate = Joi.string().min(10).required();
+        return telefoneValidate.validate(telefone);
     }
 
     validateEmail(email){
-        const emailValidate = Joi.object({
-            email: Joi.string().email({ minDomainSegments: 2 }).required(),
-        });
-        
-        return emailValidate.validate({email});
+        const emailValidate = Joi.string().email({ minDomainSegments: 2 }).required();
+        return emailValidate.validate(email);
     }
 
     validateObservacao(observacao){
-        const observacaoValidate = Joi.object({
-            observacao: Joi.string()
-        });
-        
-        return observacaoValidate.validate({observacao});
+        const observacaoValidate = Joi.string();        
+        return observacaoValidate.validate(observacao);
     }
 
     validateSexo(sexo){
-        const sexoValidate = Joi.object({
-            sexo: Joi.string().min(1).max(1).required()
-        });
-
-        return sexoValidate.validate({sexo});
+        const sexoValidate = Joi.string().min(1).max(1).required();
+        return sexoValidate.validate(sexo);
     }
 
 
