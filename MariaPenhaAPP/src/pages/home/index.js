@@ -1,7 +1,6 @@
 import React from 'react';
 import { StyleSheet, Text, View, TouchableOpacity, StatusBar, Image } from 'react-native';
 import { Feather } from '@expo/vector-icons';
-import NavbarDefault from '../../custom/component/Navbar';
 import StyleHome from './style';
 import iconMariaPenha from '../../../assets/iconMariaPenha.png'
 
@@ -22,25 +21,25 @@ export default function Home({navigation}) {
             
             <View style={StyleHome.containerBotoes}>
                 <TouchableOpacity onPress={() => navigation.navigate('Noticias')} style= {StyleHome.botoesNavegacao}>
-                    <Text />
+                    <Feather name= "chevron-left" size={20} color="#D44E5A" />
                     <Text style={StyleHome.textoBotoesNavegacao}>Notícias</Text>
                     <Feather name= "chevron-right" size={20} color="#E9A6AC" />
                 </TouchableOpacity>
                 
                 <TouchableOpacity onPress={() => navigation.navigate('Denuncias')} style= {StyleHome.botoesNavegacao}>
-                    <Text />
+                    <Feather name= "chevron-left" size={20} color="#D44E5A" />
                     <Text style={StyleHome.textoBotoesNavegacao}>Denunciar</Text>
                     <Feather name= "chevron-right" size={20} color="#E9A6AC" />
                 </TouchableOpacity>
                 
                 <TouchableOpacity onPress={() => navigation.navigate('SobreLeiMariaPenha')} style= {StyleHome.botoesNavegacao}>
-                    <Text />
+                    <Feather name= "chevron-left" size={20} color="#D44E5A" />
                     <Text style={StyleHome.textoBotoesNavegacao}>Conheça a Lei</Text>
                     <Feather name= "chevron-right" size={20} color="#E9A6AC" />
                 </TouchableOpacity>
                 
                 <TouchableOpacity onPress={() => navigation.navigate('Contatos')} style= {StyleHome.botoesNavegacao}>
-                    <Text />
+                    <Feather name= "chevron-left" size={20} color="#D44E5A" />
                     <Text style={StyleHome.textoBotoesNavegacao}>Contatos</Text>
                     <Feather name= "chevron-right" size={20} color="#E9A6AC" />
                 </TouchableOpacity>
