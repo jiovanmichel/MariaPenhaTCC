@@ -60,13 +60,21 @@ export default StyleSheet.create({
         marginHorizontal: 15,
         marginBottom: 15
     },
+    containerInputs:{
+        marginBottom: 15,
+    },
     inputText:{ 
         minHeight: 50, 
         borderColor: '#707070', 
         borderWidth: 1, 
         paddingHorizontal: 15,
-        marginBottom: 15,
+        marginBottom: 5,
         borderRadius: 4 
+    },
+    inputErros: {
+        fontSize: 10, 
+        color: '#D44E5A',
+        fontWeight: 'bold'
     },
     botaoSubmit: {
         flexDirection: 'row',

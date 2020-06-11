@@ -9,8 +9,6 @@ import avatarF from '../../../assets/avatarFeminino.png';
 import api from '../../services/api';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
 
-import FormDuvida from './form';
-
 export default function Contatos({navigation}) {
     const [ contatos, setContatos] = useState([]);
     const [valueNome, onChangeNome] = useState('');
@@ -68,8 +66,45 @@ export default function Contatos({navigation}) {
                         />
                     </View>
                     <Titulo titulo="Envie suas dúvidas" /> 
-                            
-                    <FormDuvida />
+                            <Text>{texto}</Text>
+                    <View style={ContatosStyle.containerForm}>
+                        <TextInput
+                            style={ContatosStyle.inputText}
+                            placeholder="Nome"
+                            placeholderTextColor="#707070"
+                            onChangeText={text => onChangeNome(text)}
+                            value={valueNome}
+                        />
+                        <TextInput
+                            style={ContatosStyle.inputText}
+                            placeholder="Telefone"
+                            placeholderTextColor="#707070"
+                            onChangeText={text => onChangeTelefone(text)}
+                            value={valueTelefone}
+                        />
+                        <TextInput
+                            style={ContatosStyle.inputText}
+                            placeholder="Email"
+                            placeholderTextColor="#707070"
+                            onChangeText={text => onChangeEmail(text)}
+                            value={valueEmail}
+                        />
+                        <TextInput
+                            style={[ContatosStyle.inputText, {height: 130}]}
+                            placeholder="Descreva sua dúvida"
+                            placeholderTextColor="#707070"
+                            multiline={true}
+                            editable
+                            onChangeText={text => onChangeDescricao(text)}
+                            value={valueDescricao}
+                        />
+
+                        <TouchableOpacity onPress={() => enviarDuvida()} style= {ContatosStyle.botaoSubmit}>
+                            <Feather name= "chevron-left" size={20} color="#D44E5A" />
+                            <Text style={ContatosStyle.textoBotaoSubmit}>Enviar</Text>
+                            <Feather name= "chevron-right" size={20} color="#E9A6AC" />
+                        </TouchableOpacity>
+                    </View>
                 </ScrollView>
             </KeyboardAwareScrollView>
         </View>
