@@ -1,7 +1,8 @@
 import React, { useState, useEffect} from 'react';
-import { Text, View, Image, FlatList, TouchableOpacity } from 'react-native';
+import { Text, View, ScrollView, Image, FlatList, TouchableOpacity } from 'react-native';
 import { Feather } from '@expo/vector-icons';
 import NavbarDefault from '../../custom/component/Navbar';
+import Titulo from '../../custom/component/Titulo';
 import ContatosStyle from './style';
 import avatarM from '../../../assets/avatarMasculino.jpg';
 import avatarF from '../../../assets/avatarFeminino.png';
@@ -28,35 +29,34 @@ export default function Contatos({navigation}) {
     return(
         <View style={ContatosStyle.container}>
             <NavbarDefault pageName='Contatos'></NavbarDefault>
-            
-            <FlatList
-                data={contatos}
-                keyExtractor= {contato => String(contato._id)}
-                renderItem={({ item: contato }) => (
-                    <View style={ContatosStyle.containerContato} >
-                        <View style={ContatosStyle.imagemDadosFlex}> 
-                            <View>  
-                                <Image source={checkAvatar(contato)} style={ContatosStyle.imagemContato} />
-                            </View>    
-                            <View>
-                                <Text style={ContatosStyle.nomeContato}>{contato.nome}</Text>
-                                <Text style={ContatosStyle.emailContato}>{contato.email}</Text>
-                                <Text style={ContatosStyle.foneContato}>{contato.telefone}</Text>
+            <ScrollView>
+                <View style={ContatosStyle.listaContatos}>
+                    <FlatList
+                        data={contatos}
+                        keyExtractor= {contato => String(contato._id)}
+                        renderItem={({ item: contato }) => (
+                            <View style={ContatosStyle.cardContato} >
+                                <View style={ContatosStyle.imagemDadosFlex}> 
+                                    <View>  
+                                        <Image source={checkAvatar(contato)} style={ContatosStyle.imagemContato} />
+                                    </View>    
+                                    <View>
+                                        <Text style={ContatosStyle.nomeContato}>{contato.nome}</Text>
+                                        <Text style={ContatosStyle.emailContato}>{contato.email}</Text>
+                                        <Text style={ContatosStyle.foneContato}>{contato.telefone}</Text>
+                                    </View>
+                                </View>
+                                <View style={ContatosStyle.obsContato}>
+                                    <Feather name= "info" size={15} color="#D44E5A" />
+                                    <Text style={ContatosStyle.textoObsContato}>{contato.observacao}</Text>
+                                </View> 
                             </View>
-                        </View>
-                        <View style={ContatosStyle.obsContato}>
-                            <Feather name= "info" size={15} color="#D44E5A" />
-                            <Text style={ContatosStyle.textoObsContato}>{contato.observacao}</Text>
-                        </View> 
-                    </View>
-                )}
-                
-            />
-            
-            <View style={containerFormulario}>  
-                    
-            </View>
-
+                        )}
+                        
+                    />
+                </View>
+                <Titulo titulo="Envie suas dúvidas" />
+            </ScrollView>
         </View>
     );
 }

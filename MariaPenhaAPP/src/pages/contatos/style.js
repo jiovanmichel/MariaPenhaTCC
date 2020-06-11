@@ -7,14 +7,19 @@ export default StyleSheet.create({
         backgroundColor: '#fff',
         paddingTop: Constants.statusBarHeight,
     },
-
-    containerContato: {
+    listaContatos:{
+        marginHorizontal: 15,
+        paddingBottom: 15,
+        marginBottom: 30,
+        borderBottomWidth: 2,
+        borderBottomColor: '#f4f4f4'
+    },
+    cardContato: {
         marginBottom: 10,
         marginTop: 10,
-        marginHorizontal: 15,
         backgroundColor: '#f4f4f47a',
-        padding: 15,
-        borderRadius: 10
+        borderRadius: 10,
+        padding: 15
     },
     imagemDadosFlex: {
         flexDirection: 'row',
