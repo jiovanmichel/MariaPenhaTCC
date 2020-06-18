@@ -14,14 +14,10 @@ const Form = (props) => (
                 <Feather name= 'mic' size={40} color="#D44E5A" />
             </View>
             <View>
-                <View style={DenunciasStyle.checkboxContainer}>
-                    <CheckBox
-                        value={props.values.denunciaAnonima}
-                        onValueChange={value => props.setFieldValue('denunciaAnonima', value)}
-                        style={DenunciasStyle.checkboxInput}
-                    />
+                <TouchableOpacity style={DenunciasStyle.checkboxContainer} onPress={() => props.setFieldValue('denunciaAnonima', !props.values.denunciaAnonima)}>
+                    <Feather name= { props.values.denunciaAnonima ? 'check-circle' : 'circle'} size={22}  color="#707070" />
                     <Text style={DenunciasStyle.checkboxLabel}>Denuncia Anônima</Text>
-                </View>
+                </TouchableOpacity>
                 <Text style={DenunciasStyle.textoIcone}>Preencha todos os campos abaixo para fazer sua denuncia.</Text>
             </View>
         </View>
@@ -100,13 +96,14 @@ const Form = (props) => (
 
 export default withFormik({
     mapPropsToValues: () => ({
-        denunciaAnonima: true, 
+        denunciaAnonima: false, 
         nome: '', 
         nomeAgressor: '',
         endereco: '',
         telefone: '', 
         email: '', 
-        descricao: '' }),
+        descricao: '',
+        teste: '' }),
    
     // validationSchema: Yup.object().shape({
     //     nome: Yup.string().required('Preencha o campo de nome'),
@@ -114,18 +111,18 @@ export default withFormik({
     //     email: Yup.string().email('Digite um e-mail válido').required('Preencha o campo de email'),
     //     descricao: Yup.string().required('Preencha o campo de descrição'),
     // }),
-
+    
     handleSubmit: (values, { setSubmitting, setErrors, resetForm }) => {
         console.log(values)
-        api.post('/denuncias/create', values)
-        .then(success => {
-            console.log('sucessssssssss ')
-            console.log(success.data)
-            resetForm();
-        })
-        .catch(err => {
-            setSubmitting(false);
-            setErrors({ message: err.message });
-        });
+        // api.post('/denuncias/create', values)
+        // .then(success => {
+        //     console.log('sucessssssssss ')
+        //     console.log(success.data)
+        //     resetForm();
+        // })
+        // .catch(err => {
+        //     setSubmitting(false);
+        //     setErrors({ message: err.message });
+        // });
     }
 })(Form);

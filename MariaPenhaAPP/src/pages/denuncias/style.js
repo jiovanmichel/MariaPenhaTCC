@@ -31,13 +31,14 @@ export default StyleSheet.create({
     },
     checkboxContainer: {
         flexDirection: "row",
-        marginBottom: 5,
+        marginBottom: 10,
+        alignItems: 'center'
     },
     checkboxInput: {
         alignSelf: "center",
     },
     checkboxLabel: {
-        margin: 8,
+        marginLeft: 8,
         fontWeight: 'bold',
         color: '#707070'
     },
