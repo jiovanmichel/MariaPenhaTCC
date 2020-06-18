@@ -21,16 +21,18 @@ const Form = (props) => (
                 <Text style={DenunciasStyle.textoIcone}>Preencha todos os campos abaixo para fazer sua denuncia.</Text>
             </View>
         </View>
-        <View style={FormStyle.containerInputs}>
-            <TextInput
-                style={FormStyle.inputText}
-                placeholder="Nome"
-                placeholderTextColor="#707070"
-                value={props.values.nome}
-                onChangeText={text => props.setFieldValue('nome', text)}
-            />
-            { props.touched.nome && props.errors.nome && <Text style={FormStyle.inputErros}>{props.errors.nome}</Text>}
-        </View>
+        { props.values.denunciaAnonima && 
+            <View style={FormStyle.containerInputs}>
+                <TextInput
+                    style={FormStyle.inputText}
+                    placeholder="Nome"
+                    placeholderTextColor="#707070"
+                    value={props.values.nome}
+                    onChangeText={text => props.setFieldValue('nome', text)}
+                />
+                { props.touched.nome && props.errors.nome && <Text style={FormStyle.inputErros}>{props.errors.nome}</Text>}
+            </View>
+        }
         <View style={FormStyle.containerInputs}>
             <TextInput
                 style={FormStyle.inputText}
@@ -51,26 +53,42 @@ const Form = (props) => (
             />
             { props.touched.endereco && props.errors.endereco && <Text style={FormStyle.inputErros}>{props.errors,endereco}</Text> }
         </View>
-        <View style={FormStyle.containerInputs}>
-            <TextInput
-                style={FormStyle.inputText}
-                placeholder="Telefone"
-                placeholderTextColor="#707070"
-                value={props.values.telefone}
-                onChangeText={text => props.setFieldValue('telefone', text)}
-            />
-            { props.touched.telefone && props.errors.telefone && <Text style={FormStyle.inputErros}>{props.errors.telefone}</Text> }
-        </View>
-        <View style={FormStyle.containerInputs}>
-            <TextInput
-                style={FormStyle.inputText}
-                placeholder="Email"
-                placeholderTextColor="#707070"
-                value={props.values.email}
-                onChangeText={text => props.setFieldValue('email', text)}
-            />
-            { props.touched.email && props.errors.email && <Text style={FormStyle.inputErros}>{props.errors.email}</Text> }
-        </View>
+        { props.values.denunciaAnonima && 
+            <View style={FormStyle.containerInputs}>
+                <TextInput
+                    style={FormStyle.inputText}
+                    placeholder="Telefone"
+                    placeholderTextColor="#707070"
+                    value={props.values.telefone}
+                    onChangeText={text => props.setFieldValue('telefone', text)}
+                />
+                { props.touched.telefone && props.errors.telefone && <Text style={FormStyle.inputErros}>{props.errors.telefone}</Text> }
+            </View>
+        }
+        { props.values.denunciaAnonima && 
+            <View style={FormStyle.containerInputs}>
+                <TextInput
+                    style={FormStyle.inputText}
+                    placeholder="Email"
+                    placeholderTextColor="#707070"
+                    value={props.values.email}
+                    onChangeText={text => props.setFieldValue('email', text)}
+                />
+                { props.touched.email && props.errors.email && <Text style={FormStyle.inputErros}>{props.errors.email}</Text> }
+            </View>
+        }
+        { props.values.denunciaAnonima && 
+            <View style={FormStyle.containerInputs}>
+                <TextInput
+                    style={FormStyle.inputText}
+                    placeholder="Data da ocorrência"
+                    placeholderTextColor="#707070"
+                    value={props.values.dataOcorrencia}
+                    onChangeText={text => props.setFieldValue('dataOcorrencia', text)}
+                />
+                { props.touched.dataOcorrencia && props.errors.dataOcorrencia && <Text style={FormStyle.inputErros}>{props.errors.dataOcorrencia}</Text> }
+            </View>
+        }
         <View style={FormStyle.containerInputs}>
             <TextInput
                 style={[FormStyle.inputText, {height: 130}]}
@@ -103,15 +121,14 @@ export default withFormik({
         telefone: '', 
         email: '', 
         descricao: '',
-        teste: '' }),
-   
+        dataOcorrencia: '' }),
+    
     // validationSchema: Yup.object().shape({
     //     nome: Yup.string().required('Preencha o campo de nome'),
     //     telefone: Yup.number().typeError('Telefone inválido, informe apenas números').required('Preencha o campo de telefone'),
     //     email: Yup.string().email('Digite um e-mail válido').required('Preencha o campo de email'),
     //     descricao: Yup.string().required('Preencha o campo de descrição'),
     // }),
-    
     handleSubmit: (values, { setSubmitting, setErrors, resetForm }) => {
         console.log(values)
         // api.post('/denuncias/create', values)
