@@ -10,11 +10,11 @@ export default StyleSheet.create({
 
     containerIcone: {
         // width: '100%',
-        marginVertical: 15,
+        marginVertical: 30,
         flexDirection: 'row',
         alignItems: 'center',
         justifyContent: 'flex-start',
-        width: '100%'
+        width: '100%',
     },
     circuloIcone: {
         width: 80,
@@ -28,5 +28,17 @@ export default StyleSheet.create({
     textoIcone: {
         width: 200,
         color: '#707070'
-    }
+    },
+    checkboxContainer: {
+        flexDirection: "row",
+        marginBottom: 5,
+    },
+    checkboxInput: {
+        alignSelf: "center",
+    },
+    checkboxLabel: {
+        margin: 8,
+        fontWeight: 'bold',
+        color: '#707070'
+    },
 });

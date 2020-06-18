@@ -11,9 +11,6 @@ export default function Denuncias({navigation}) {
             <NavbarDefault pageName='Denunciar'></NavbarDefault>
             <KeyboardAwareScrollView behavior="padding">
                 <ScrollView>
-                    <View>
-                        
-                    </View>
                     <FormDenuncias />
                 </ScrollView>
             </KeyboardAwareScrollView>
