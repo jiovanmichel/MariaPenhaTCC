@@ -9,7 +9,6 @@ export default StyleSheet.create({
     },
 
     containerIcone: {
-        // width: '100%',
         marginVertical: 30,
         flexDirection: 'row',
         alignItems: 'center',
@@ -27,7 +26,8 @@ export default StyleSheet.create({
     },
     textoIcone: {
         width: 200,
-        color: '#707070'
+        color: '#707070',
+        lineHeight: 20
     },
     checkboxContainer: {
         flexDirection: "row",

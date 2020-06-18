@@ -31,10 +31,17 @@ export default StyleSheet.create({
         width: '100%',
         height: 60,
         paddingHorizontal: 15
-        
     },
     textoBotaoSubmit: {
         color: '#fff',
         fontSize: 22,
+    },
+    inputDatePicker: {
+        width: '100%',
+        borderWidth: 1, 
+        borderColor: '#707070',
+        borderRadius: 4,
+        height: 50, 
+        paddingLeft: 15,
     },
 });

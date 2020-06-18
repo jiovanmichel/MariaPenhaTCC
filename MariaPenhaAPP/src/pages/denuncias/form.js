@@ -6,6 +6,7 @@ import FormStyle from './../../custom/styles/FormStyle';
 import api from '../../services/api';
 import * as Yup from 'yup';
 import DenunciasStyle from './style';
+import DatePicker from 'react-native-datepicker';
 
 const Form = (props) => (
     <View style={FormStyle.containerForm}>
@@ -15,13 +16,18 @@ const Form = (props) => (
             </View>
             <View>
                 <TouchableOpacity style={DenunciasStyle.checkboxContainer} onPress={() => props.setFieldValue('denunciaAnonima', !props.values.denunciaAnonima)}>
-                    <Feather name= { props.values.denunciaAnonima ? 'check-circle' : 'circle'} size={22}  color="#707070" />
+                    <Feather name= { props.values.denunciaAnonima ? 'check-circle' : 'circle'} size={22}  color= '#707070' />
                     <Text style={DenunciasStyle.checkboxLabel}>Denuncia Anônima</Text>
                 </TouchableOpacity>
-                <Text style={DenunciasStyle.textoIcone}>Preencha todos os campos abaixo para fazer sua denuncia.</Text>
+                { !props.values.denunciaAnonima &&
+                    <Text style={DenunciasStyle.textoIcone}>Preencha todos os campos abaixo para fazer sua denuncia.</Text>
+                }
+                { props.values.denunciaAnonima &&
+                    <Text style={[DenunciasStyle.textoIcone, {width: 240, color: '#D44E5A'}]}>Você não precisa se identificar, seus dados permanecerão em sigilo.</Text>
+                }
             </View>
         </View>
-        { props.values.denunciaAnonima && 
+        { !props.values.denunciaAnonima && 
             <View style={FormStyle.containerInputs}>
                 <TextInput
                     style={FormStyle.inputText}
@@ -53,7 +59,7 @@ const Form = (props) => (
             />
             { props.touched.endereco && props.errors.endereco && <Text style={FormStyle.inputErros}>{props.errors,endereco}</Text> }
         </View>
-        { props.values.denunciaAnonima && 
+        { !props.values.denunciaAnonima && 
             <View style={FormStyle.containerInputs}>
                 <TextInput
                     style={FormStyle.inputText}
@@ -65,7 +71,7 @@ const Form = (props) => (
                 { props.touched.telefone && props.errors.telefone && <Text style={FormStyle.inputErros}>{props.errors.telefone}</Text> }
             </View>
         }
-        { props.values.denunciaAnonima && 
+        { !props.values.denunciaAnonima && 
             <View style={FormStyle.containerInputs}>
                 <TextInput
                     style={FormStyle.inputText}
@@ -77,21 +83,42 @@ const Form = (props) => (
                 { props.touched.email && props.errors.email && <Text style={FormStyle.inputErros}>{props.errors.email}</Text> }
             </View>
         }
-        { props.values.denunciaAnonima && 
+        { !props.values.denunciaAnonima && 
             <View style={FormStyle.containerInputs}>
-                <TextInput
-                    style={FormStyle.inputText}
+                <DatePicker
+                    style={FormStyle.inputDatePicker}
+                    date={props.values.dataOcorrencia}
+                    mode="date"
                     placeholder="Data da ocorrência"
-                    placeholderTextColor="#707070"
-                    value={props.values.dataOcorrencia}
-                    onChangeText={text => props.setFieldValue('dataOcorrencia', text)}
+                    format="DD/MM/YYYY"
+                    // minDate="2016-05-01"
+                    // maxDate="2016-06-01"
+                    confirmBtnText="Confirmar"
+                    cancelBtnText="Cancelar"
+                    customStyles={{
+                        dateInput: {
+                            borderWidth: 0,
+                            minHeight: 50,
+                            alignItems: 'flex-start',
+                        },
+                        dateText: {
+                            color: '#707070'
+                        },
+                        placeholderText: {
+                            color: '#707070',
+                        },
+                        dateTouchBody: {
+                            marginTop: 4
+                        },
+                    }}
+                    onDateChange={(date) => props.setFieldValue('dataOcorrencia', date)}
                 />
                 { props.touched.dataOcorrencia && props.errors.dataOcorrencia && <Text style={FormStyle.inputErros}>{props.errors.dataOcorrencia}</Text> }
             </View>
         }
         <View style={FormStyle.containerInputs}>
             <TextInput
-                style={[FormStyle.inputText, {height: 130}]}
+                style={[FormStyle.inputText, {height: 130, paddingTop: 15}]}
                 placeholder="Descreva o ocorrido"
                 placeholderTextColor="#707070"
                 multiline={true}
@@ -114,14 +141,14 @@ const Form = (props) => (
 
 export default withFormik({
     mapPropsToValues: () => ({
-        denunciaAnonima: false, 
+        denunciaAnonima: true, 
         nome: '', 
         nomeAgressor: '',
         endereco: '',
         telefone: '', 
         email: '', 
         descricao: '',
-        dataOcorrencia: '' }),
+        dataOcorrencia: ''}),
     
     // validationSchema: Yup.object().shape({
     //     nome: Yup.string().required('Preencha o campo de nome'),
