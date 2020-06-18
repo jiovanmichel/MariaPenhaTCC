@@ -13,18 +13,10 @@ import FormDuvida from './form';
 
 export default function Contatos({navigation}) {
     const [ contatos, setContatos] = useState([]);
-    const [valueNome, onChangeNome] = useState('');
-    const [valueTelefone, onChangeTelefone] = useState('');
-    const [valueEmail, onChangeEmail] = useState('');
-    const [valueDescricao, onChangeDescricao] = useState('');
-    const [texto, changeTexto] = useState('');
-
+    
     async function carregarContatos(){
         const response = await api.get('contatos/index');
         setContatos(response.data)
-    }
-    async function enviarDuvida(){
-        changeTexto(`${valueNome} - ${valueTelefone} - ${valueEmail} - ${valueDescricao}`);
     }
 
     useEffect(() => {
