@@ -1,7 +1,6 @@
 import React from 'react';
 import { NavigationContainer, DarkTheme } from '@react-navigation/native';
 import { createDrawerNavigator } from '@react-navigation/drawer';
-import { StyleSheet } from 'react-native';
 
 const AppDrawer = createDrawerNavigator();
 
@@ -10,6 +9,7 @@ import NoticiasScreen      from './pages/noticias';
 import DenunciasScreen     from './pages/denuncias';
 import LeiMariaPenhaScreen from './pages/leiMariaPenha';
 import ContatosScreen      from './pages/contatos';
+import DetalhesScreen       from './pages/detalhes';
 
 export default function Routes(){
     return (
@@ -20,6 +20,7 @@ export default function Routes(){
             <AppDrawer.Screen name="Denuncias" component={DenunciasScreen} options={{ title: 'Denunciar' }} />
             <AppDrawer.Screen name="SobreLeiMariaPenha" component={LeiMariaPenhaScreen} options={{ title: 'Conheça a Lei' }} />
             <AppDrawer.Screen name="Contatos" component={ContatosScreen} options={{ title: 'Contatos' }} />
+            <AppDrawer.Screen name="DetalhesNoticia" component={DetalhesScreen} options={{ drawerLabel: () => null, gestureEnabled: false, }} />
           </AppDrawer.Navigator>
         </NavigationContainer>
     );

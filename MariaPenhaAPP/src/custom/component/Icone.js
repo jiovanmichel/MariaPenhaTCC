@@ -8,7 +8,7 @@ export default function NavbarDefault(props){
     return(
         <View style={IconeStyle.container}>
             <View style={IconeStyle.circuloIcone}>
-                <Feather name= {props.iconeNome} size={40} color="#D44E5A" />
+                <Feather name= {props.iconeNome} size={30} color="#D44E5A" />
             </View>
         </View>
     );

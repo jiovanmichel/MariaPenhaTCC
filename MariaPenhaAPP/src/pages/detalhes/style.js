@@ -7,35 +7,51 @@ export default StyleSheet.create({
         backgroundColor: '#fff',
         paddingTop: Constants.statusBarHeight,
     },
-    containerListNoticias:{
-        marginHorizontal: 15,
+    containerHeader: {
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        alignItems: 'center',
+        backgroundColor: '#D44E5A',
+        width: '100%',
+        height: 60,
+        padding: 15,        
+    },
+    nomePage: {
+        color: '#fff',
+        fontSize: 22
+    },
+    containerDetalhe:{
+        // margin: 15
+    },
+    containerImagem:{
+        marginBottom: 30
+    },
+    imagemNoticia:{
+        width: '100%',
+        height: 220
     },
     containerNoticia:{
-        borderWidth: 1,
-        borderColor: '#707070',
-        marginBottom: 15
+        margin: 15
     },
     tituloNoticia:{
         fontSize: 22,
         color: '#242F3E',
-        margin: 15
+        marginBottom: 5
     },
     categoriaNoticia:{
         color: '#D44E5A',
-        paddingHorizontal: 15,
     },
-    resumoNoticia:{
-        margin: 15,
+    descricaoNoticia:{
         color: '#242F3E',
-        lineHeight: 20,
+        lineHeight: 22,
+        marginVertical: 30
     },
     hr: {
         borderWidth: 0.3,
         borderColor: '#707070',
     },
     rodapeNoticia:{
-        paddingHorizontal: 15,
-        paddingVertical: 10,
+        paddingVertical: 30,
         alignContent: 'space-between',
         flexDirection: 'row'
     },
