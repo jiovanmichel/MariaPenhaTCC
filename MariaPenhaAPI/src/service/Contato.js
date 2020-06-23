@@ -4,7 +4,7 @@ const ValidateModel = new(require('./../models/validates/Contato'));
 
 module.exports = class ContatoService {
     async index(){
-        let contatos = await ContatoModel.find();
+        let contatos = await ContatoModel.find().sort({nome: '-1'});
 
         return contatos;
     }
