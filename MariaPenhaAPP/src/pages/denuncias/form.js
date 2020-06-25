@@ -49,16 +49,18 @@ const Form = (props) => (
             />
             { props.touched.nomeAgressor && props.errors.nomeAgressor && <Text style={FormStyle.inputErros}>{props.errors.nomeAgressor}</Text> }
         </View>
-        <View style={FormStyle.containerInputs}>
-            <TextInput
-                style={FormStyle.inputText}
-                placeholder="Endereço"
-                placeholderTextColor="#707070"
-                value={props.values.endereco}
-                onChangeText={text => props.setFieldValue('endereco', text)}
-            />
-            { props.touched.endereco && props.errors.endereco && <Text style={FormStyle.inputErros}>{props.errors,endereco}</Text> }
-        </View>
+        { !props.values.denunciaAnonima && 
+            <View style={FormStyle.containerInputs}>
+                <TextInput
+                    style={FormStyle.inputText}
+                    placeholder="Endereço"
+                    placeholderTextColor="#707070"
+                    value={props.values.endereco}
+                    onChangeText={text => props.setFieldValue('endereco', text)}
+                />
+                { props.touched.endereco && props.errors.endereco && <Text style={FormStyle.inputErros}>{props.errors,endereco}</Text> }
+            </View>
+        }
         { !props.values.denunciaAnonima && 
             <View style={FormStyle.containerInputs}>
                 <TextInput
@@ -83,39 +85,37 @@ const Form = (props) => (
                 { props.touched.email && props.errors.email && <Text style={FormStyle.inputErros}>{props.errors.email}</Text> }
             </View>
         }
-        { !props.values.denunciaAnonima && 
-            <View style={FormStyle.containerInputs}>
-                <DatePicker
-                    style={FormStyle.inputDatePicker}
-                    date={props.values.dataOcorrencia}
-                    mode="date"
-                    placeholder="Data da ocorrência"
-                    format="DD/MM/YYYY"
-                    // minDate="2016-05-01"
-                    // maxDate="2016-06-01"
-                    confirmBtnText="Confirmar"
-                    cancelBtnText="Cancelar"
-                    customStyles={{
-                        dateInput: {
-                            borderWidth: 0,
-                            minHeight: 50,
-                            alignItems: 'flex-start',
-                        },
-                        dateText: {
-                            color: '#707070'
-                        },
-                        placeholderText: {
-                            color: '#707070',
-                        },
-                        dateTouchBody: {
-                            marginTop: 4
-                        },
-                    }}
-                    onDateChange={(date) => props.setFieldValue('dataOcorrencia', date)}
-                />
-                { props.touched.dataOcorrencia && props.errors.dataOcorrencia && <Text style={FormStyle.inputErros}>{props.errors.dataOcorrencia}</Text> }
-            </View>
-        }
+        <View style={FormStyle.containerInputs}>
+            <DatePicker
+                style={FormStyle.inputDatePicker}
+                date={props.values.dataOcorrencia}
+                mode="date"
+                placeholder="Data da ocorrência"
+                format="DD/MM/YYYY"
+                // minDate="2016-05-01"
+                // maxDate="2016-06-01"
+                confirmBtnText="Confirmar"
+                cancelBtnText="Cancelar"
+                customStyles={{
+                    dateInput: {
+                        borderWidth: 0,
+                        minHeight: 50,
+                        alignItems: 'flex-start',
+                    },
+                    dateText: {
+                        color: '#707070'
+                    },
+                    placeholderText: {
+                        color: '#707070',
+                    },
+                    dateTouchBody: {
+                        marginTop: 4
+                    },
+                }}
+                onDateChange={(date) => props.setFieldValue('dataOcorrencia', date)}
+            />
+            { props.touched.dataOcorrencia && props.errors.dataOcorrencia && <Text style={FormStyle.inputErros}>{props.errors.dataOcorrencia}</Text> }
+        </View>
         <View style={FormStyle.containerInputs}>
             <TextInput
                 style={[FormStyle.inputText, {height: 130, paddingTop: 15}]}
