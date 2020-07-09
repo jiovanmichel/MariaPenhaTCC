@@ -1,3 +1,4 @@
+
 const Mongoose = require('mongoose');
 
 let DuvidaSchema = Mongoose.Schema({
@@ -7,4 +8,4 @@ let DuvidaSchema = Mongoose.Schema({
     descricao: String
 });
 
-module.exports = Mongoose.model('duvida', DuvidaSchema, 'duvidas') 
+module.exports = Mongoose.model('duvida', DuvidaSchema, 'duvidas');
