@@ -2,6 +2,7 @@ import React from 'react';
 import { Text, View, TouchableOpacity, ScrollView, Image } from 'react-native';
 import DetalhesStyle from './style';
 import { Feather } from '@expo/vector-icons';
+import Moment from 'moment';
 
 export default function Noticias({route, navigation}) {
     const noticia = route.params.noticia;
@@ -31,7 +32,7 @@ export default function Noticias({route, navigation}) {
                         <View style={DetalhesStyle.hr}></View>
                         <View style={DetalhesStyle.rodapeNoticia}>
                             <Text style={DetalhesStyle.autorNoticia}>{noticia.autor}</Text>   
-                            <Text style={DetalhesStyle.dataHoraNoticia}>{noticia.dataHora}</Text>
+                            <Text style={DetalhesStyle.dataHoraNoticia}>{Moment(noticia.data).add(12, 'hours').format('DD/MM/YYYY')}</Text>
                         </View>
                     </View>
                     

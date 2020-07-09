@@ -7,7 +7,7 @@ module.exports = class NoticiaService {
         this.objetoNoticia = {};
     }
     async index(){
-        let noticias = await NoticiaModel.find();
+        let noticias = await NoticiaModel.find().populate('categoria');
         return noticias;
     }
 
@@ -15,7 +15,7 @@ module.exports = class NoticiaService {
         let noticia = {};
         
         try{
-            noticia = await NoticiaModel.findOne({_id: id});
+            noticia = await NoticiaModel.findOne({_id: id}).populate('categoria');
         }catch(error){
             console.log(error)
         }
@@ -41,3 +41,5 @@ module.exports = class NoticiaService {
         return retornoDelete;
     }
 }
+
+
