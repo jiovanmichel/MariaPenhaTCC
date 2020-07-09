@@ -2,7 +2,7 @@
 const Mongoose = require('mongoose');
 
 let NoticiaSchema = Mongoose.Schema({
-    categoria: {type: mongoose.Schema.Types.ObjectId, ref: 'categoriasNoticias'},
+    categoria: {type: Mongoose.Schema.Types.ObjectId, ref: 'categoriasNoticias'},
     titulo: String,
     resumo: String,
     autor: String, 

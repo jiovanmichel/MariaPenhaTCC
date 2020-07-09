@@ -1,6 +1,7 @@
 const UsuarioModel = require('./../models/Usuario');
 const mongoose = require('mongoose');
 const ValidateModel = new(require('../models/validates/Usuario'));
+const bcrypt = require('bcryptjs') 
 
 module.exports = class UsuarioService {
     async index(){
@@ -25,6 +26,11 @@ module.exports = class UsuarioService {
         const {error, value: usuario} = this.validarUsuario(usuarioParams)
         
         if (error) return error.details;
+
+        const cryptPwd = bcrypt.hashSync(usuario.senha, 10);
+
+        usuario.senha = cryptPwd;
+        usuario.confirmarSenha = cryptPwd;
     
         return await UsuarioModel.create(usuario);
     }
@@ -35,6 +41,12 @@ module.exports = class UsuarioService {
         if (error) return error.details;
 
         return await UsuarioModel.updateOne({_id: usuarioId}, {$set: usuario}, {new: true});
+    }
+
+    async delete(id){
+        let retornoDelete = await UsuarioModel.deleteOne({_id: id});
+
+        return retornoDelete;
     }
 
     validarUsuario(params){

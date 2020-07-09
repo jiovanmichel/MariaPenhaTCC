@@ -1,6 +1,6 @@
 const Express = require('express');
 const Router = Express.Router();
-const contatosController = new(require('../controllers/Contatos'));
+const contatosController = new(require('./../../../controllers/api/v1/Contatos'));
 
 Router.get('/index', contatosController.index);
 Router.get('/show/:id', contatosController.show);

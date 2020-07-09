@@ -1,4 +1,4 @@
-const DuvidaService = new(require('./../service/Duvida'));
+const DuvidaService = new(require('./../../service/Duvida'));
 
 module.exports = class DuvidasController {
     async index(req, res){
@@ -17,10 +17,13 @@ module.exports = class DuvidasController {
     }
 
     async update(req, res){
-        res.json(await DuvidaService.update(req.params.id, req.body));
+        let retornoUpdate = await DuvidaService.update(req.params.id, req.body);
+        res.json(retornoUpdate);
     }
 
     async delete(req, res){
-        res.json({});
-    }    
+        let retornoDelete = await DuvidaService.delete(req.params.id)
+        res.json(retornoDelete);
+    }   
+
 }

@@ -1,6 +1,6 @@
 const Express = require('express');
 const Router = Express.Router();
-const AgressoesController = new(require('../controllers/Agressoes'));
+const AgressoesController = new(require('./../../controllers/sistema/Agressoes'));
 
 Router.get('/index', AgressoesController.index);
 Router.get('/show/:id', AgressoesController.show);

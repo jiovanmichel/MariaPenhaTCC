@@ -1,6 +1,6 @@
 const Express = require('express');
 const Router = Express.Router();
-const UsuariosController = new(require('../controllers/Usuarios'));
+const UsuariosController = new(require('./../../../controllers/api/v1/Usuarios'));
 
 Router.get('/index', UsuariosController.index); // rota /usuarios/index
 Router.get('/show/:id', UsuariosController.show); // rota /usuarios/show/:id

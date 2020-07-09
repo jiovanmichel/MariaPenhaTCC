@@ -1,6 +1,6 @@
 const Express = require('express');
 const Router = Express.Router();
-const NoticiasController = new(require('../controllers/Noticias'));
+const NoticiasController = new(require('./../../controllers/sistema/Noticias'));
 
 Router.get('/index', NoticiasController.index);
 Router.get('/show/:id', NoticiasController.show);

@@ -12,26 +12,32 @@ module.exports = class AgressaoService {
     }
 
     async show(id){
-        let denuncia = {};
+        let agressao = {};
         
         try{
-            denuncia = await AgressaoModel.findOne({_id: id});
+            agressao = await AgressaoModel.findOne({_id: id});
         }catch(error){
             console.log(error)
         }
 
-        return denuncia;
+        return agressao;
     }
 
     async create(params){
-        return {};
+        let agressao = await AgressaoModel.create(params);
+
+        return agressao;
     }
 
     async update(id, params){
-        return {};
+        let retornoUpdate = await AgressaoModel.updateOne({_id: id}, {$set: params});
+        
+        return retornoUpdate;
     }
     
     async delete(id){
-        return {}
+        let retornoDelete = await AgressaoModel.deleteOne({_id: id});
+
+        return retornoDelete;
     }
 }

@@ -1,4 +1,4 @@
-const ContatoService = new(require('./../service/Contato'));
+const ContatoService = new(require('./../../../service/Contato'));
 
 module.exports = class ContatosController {
     async index(req, res){
@@ -17,10 +17,12 @@ module.exports = class ContatosController {
     }
 
     async update(req, res){
-        res.json(await ContatoService.update(req.params.id, req.body));
+        let retornoUpdate = await ContatoService.update(req.params.id, req.body);
+        res.json(retornoUpdate);
     }
 
     async delete(req, res){
-        res.json({});
+        let retornoDelete = await ContatoService.delete(req.params.id)
+        res.json(retornoDelete);
     }    
 }

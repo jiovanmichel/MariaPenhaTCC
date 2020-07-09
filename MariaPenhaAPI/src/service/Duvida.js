@@ -37,6 +37,12 @@ module.exports = class DuvidaService {
         return await DuvidaModel.updateOne({_id: duvidaId}, {$set: duvida}, {new: true});
     }
 
+    async delete(id){
+        let retornoDelete = await DuvidaModel.deleteOne({_id: id});
+
+        return retornoDelete;
+    }
+
     validarDuvida(params){
         let duvida = {
             nome: params.nome,

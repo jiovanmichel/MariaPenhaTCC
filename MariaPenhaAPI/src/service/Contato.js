@@ -1,5 +1,6 @@
 const ContatoModel = require('./../models/Contato');
 const mongoose = require('mongoose');
+const Contato = require('./../models/Contato');
 const ValidateModel = new(require('./../models/validates/Contato'));
 
 module.exports = class ContatoService {
@@ -9,11 +10,11 @@ module.exports = class ContatoService {
         return contatos;
     }
 
-    async show(contatoId){
+    async show(id){
         let contato = {};
         
         try{
-            contato = await ContatoModel.findOne({_id: contatoId});
+            contato = await ContatoModel.findOne({_id: id});
         }catch(error){
             console.log(error)
         }
@@ -21,20 +22,26 @@ module.exports = class ContatoService {
         return contato;
     }
 
-    async create(contatoParams){
-        const {error, value: contato} = this.validarContato(contatoParams)
+    async create(params){
+        const {error, value: contato} = this.validarContato(params)
         
         if (error) return error.details;
     
         return await ContatoModel.create(contato);
     }
 
-    async update(contatoId, contatoParams){      
-        const {error, value: contato} = this.validarContato(contatoParams)
+    async update(id, params){      
+        const {error, value: contato} = this.validarContato(params)
         
         if (error) return error.details;
 
-        return await ContatoModel.updateOne({_id: contatoId}, {$set: contato}, {new: true});
+        return await ContatoModel.updateOne({_id: id}, {$set: contato}, {new: true});
+    }
+
+    async delete(id){
+        let retornoDelete = await ContatoModel.deleteOne({_id: id});
+
+        return retornoDelete;
     }
 
     validarContato(params){

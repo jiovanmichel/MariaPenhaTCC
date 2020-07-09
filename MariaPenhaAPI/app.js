@@ -72,15 +72,31 @@ app.get('/logout', (req, res) => {
 });
 //#endregion
 
-// app.use('/usuarios', authenticationMiddleware(), require('./src/router/usuarios'));
-app.use('/api/v1/contatos',          require('./src/router/api/v1/contatos'));
-app.use('/api/v1/duvidas',           require('./src/router/api/v1/duvidas'));
-app.use('/api/v1/denuncias',         require('./src/router/api/v1/denuncias'));
-app.use('/api/v1/noticiaCategorias', require('./src/router/api/v1/noticiaCategorias'));
 app.use('/api/v1/noticias',          require('./src/router/api/v1/noticias'));
-app.use('/api/v1/usuarios',          require('./src/router/api/v1/usuarios'));
-app.use('/api/v1/pessoas',           require('./src/router/api/v1/pessoas'));
-app.use('/api/v1/agressoes',         require('./src/router/api/v1/agressoes'));
-app.use('/api/v1/medidasProtetivas', require('./src/router/api/v1/medidasProtetivas'));
+app.use('/api/v1/duvidas',           require('./src/router/api/v1/duvidas'));
+app.use('/api/v1/noticiaCategorias', require('./src/router/api/v1/noticiaCategorias'));
+app.use('/api/v1/contatos',          require('./src/router/api/v1/contatos'));
+
+//#region Rotas para acessar toda a API
+// app.use('/api/v1/contatos',          require('./src/router/api/v1/contatos'));
+// app.use('/api/v1/duvidas',           require('./src/router/api/v1/duvidas'));
+// app.use('/api/v1/denuncias',         require('./src/router/api/v1/denuncias'));
+// app.use('/api/v1/noticiaCategorias', require('./src/router/api/v1/noticiaCategorias'));
+// app.use('/api/v1/noticias',          require('./src/router/api/v1/noticias'));
+// app.use('/api/v1/usuarios',          require('./src/router/api/v1/usuarios'));
+// app.use('/api/v1/pessoas',           require('./src/router/api/v1/pessoas'));
+// app.use('/api/v1/agressoes',         require('./src/router/api/v1/agressoes'));
+// app.use('/api/v1/medidasProtetivas', require('./src/router/api/v1/medidasProtetivas'));
+//#endregion
+
+app.use('/agressoes',         /*authenticationMiddleware(),*/ require('./src/router/sistema/agressoes'));
+app.use('/contatos',          /*authenticationMiddleware(),*/ require('./src/router/sistema/contatos'));
+app.use('/denuncias',         /*authenticationMiddleware(),*/ require('./src/router/sistema/denuncias'));
+app.use('/duvidas',           /*authenticationMiddleware(),*/ require('./src/router/sistema/duvidas'));
+app.use('/medidasProtetivas', /*authenticationMiddleware(),*/ require('./src/router/sistema/medidasProtetivas'));
+app.use('/noticiaCategorias', /*authenticationMiddleware(),*/ require('./src/router/sistema/noticiaCategorias'));
+app.use('/noticias',          /*authenticationMiddleware(),*/ require('./src/router/sistema/noticias'));
+app.use('/pessoas',           /*authenticationMiddleware(),*/ require('./src/router/sistema/pessoas'));
+app.use('/usuarios',          /*authenticationMiddleware(),*/ require('./src/router/sistema/usuarios'));
 
 app.listen(3000);

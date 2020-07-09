@@ -1,4 +1,4 @@
-const UsuarioService = new(require('./../service/Usuario'));
+const UsuarioService = new(require('./../../../service/Usuario'));
 
 module.exports = class UsuariosController {
     async index(req, res){
@@ -17,11 +17,12 @@ module.exports = class UsuariosController {
     }
 
     async update(req, res){
-        const usuario = await UsuarioService.update(req.params.id, req.body)
-        res.json(usuario);
+        let retornoUpdate = await UsuarioService.update(req.params.id, req.body);
+        res.json(retornoUpdate);
     }
 
     async delete(req, res){
-        res.json({});
+        let retornoDelete = await UsuarioService.delete(req.params.id)
+        res.json(retornoDelete);
     }    
 }

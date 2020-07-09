@@ -12,11 +12,11 @@ module.exports = class DenunaService {
         return denuncias;
     }
 
-    async show(denunciaId){
+    async show(id){
         let denuncia = {};
         
         try{
-            denuncia = await DenunciaModel.findOne({_id: denunciaId});
+            denuncia = await DenunciaModel.findOne({_id: id});
         }catch(error){
             console.log(error)
         }
@@ -24,13 +24,13 @@ module.exports = class DenunaService {
         return denuncia;
     }
 
-    async create(denunciaParams){
+    async create(params){
         // let validateCreate = {};
-        // const validateDenunciaAnonima = ValidateModel.validateDenunciaAnonima(denunciaParams.denunciaAnonima);
+        // const validateDenunciaAnonima = ValidateModel.validateDenunciaAnonima(params.denunciaAnonima);
         // if(validateDenunciaAnonima.error)
         //     validateCreate = {error: validateDenunciaAnonima.details}
         // else
-        //     validateCreate = this.validarDenuncia(denunciaParams);
+        //     validateCreate = this.validarDenuncia(params);
         
         // if(validateCreate.error)
         //     return validateCreate.error
@@ -40,16 +40,28 @@ module.exports = class DenunaService {
         // if (error) return error.details;
     
         // return await DenunciaModel.create({});
-        return {};
+
+        let pessoa = await DenunciaModel.create(params);
+
+        return pessoa;
     }
 
-    async update(duvidaId, duvidaParams){
-        // const {error, value: contato} = this.validarContato(duvidaParams)
+    async update(id, params){
+        // const {error, value: contato} = this.validarContato(params)
         
         // if (error) return error.details;
 
-        // return await DenunciaModel.updateOne({_id: duvidaId}, {$set: contato}, {new: true});
-        return {};
+        // return await DenunciaModel.updateOne({_id: id}, {$set: contato}, {new: true});
+
+        let retornoUpdate = await DenunciaModel.updateOne({_id: id}, {$set: params});
+        
+        return retornoUpdate;
+    }
+    
+    async delete(id){
+        let retornoDelete = await DenunciaModel.deleteOne({_id: id});
+
+        return retornoDelete;
     }
 
     validarDenuncia(params){

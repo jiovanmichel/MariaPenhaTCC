@@ -1,6 +1,6 @@
 const Express = require('express');
 const Router = Express.Router();
-const MedidasProtetivasController = new(require('../controllers/MedidasProtetivas'));
+const MedidasProtetivasController = new(require('./../../controllers/sistema/MedidasProtetivas'));
 
 Router.get('/index', MedidasProtetivasController.index);
 Router.get('/show/:id', MedidasProtetivasController.show);

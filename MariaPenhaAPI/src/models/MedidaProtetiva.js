@@ -1,7 +1,7 @@
 const Mongoose = require('mongoose');
 
 let MedidaProtetivaSchema = Mongoose.Schema({
-    agressao: {type: mongoose.Schema.Types.ObjectId, ref: 'agressoes'},
+    agressao: {type: Mongoose.Schema.Types.ObjectId, ref: 'agressoes'},
     data: Date, 
     descricao: String,
 });
