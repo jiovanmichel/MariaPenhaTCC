@@ -7,7 +7,7 @@ module.exports = class AgressaoService {
         this.objetoAgressao = {};
     }
     async index(){
-        let agressoes = await AgressaoModel.find();
+        let agressoes = await AgressaoModel.find().populate('vitima').populate('agressor');
         return agressoes;
     }
 
