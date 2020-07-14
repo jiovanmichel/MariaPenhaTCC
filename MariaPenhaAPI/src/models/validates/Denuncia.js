@@ -4,8 +4,8 @@ module.exports = class ValidateDenunciaSchema {
     validateDenuncia(denuncia){
         const denunciaValidate = Joi.object({
             denunciaAnonima: Joi.boolean().falsy('N').truthy('S'),
-            nome: Joi.string().min(5).max(100).required(),
-            nomeAgressor: Joi.string().min(5).max(100).required(),
+            nome: Joi.string().max(100).required(),
+            nomeAgressor: Joi.string().max(100).required(),
             endereco: Joi.string().required(),
             telefone: Joi.string().min(10).required(), 
             email: Joi.string().email({ minDomainSegments: 2 }).required(),
@@ -22,11 +22,11 @@ module.exports = class ValidateDenunciaSchema {
         return denunciaAnonimaValidate.validate(denunciaAnonima);
     }
     validateNome(nome){
-        const nomeValidate = Joi.string().min(5).max(100).required();
+        const nomeValidate = Joi.string().max(100).required();
         return nomeValidate.validate(nome);
     }
     validateNomeAgressor(nomeAgressor){
-        const nomeAgressorValidate = Joi.string().min(5).max(100).required();
+        const nomeAgressorValidate = Joi.string().max(100).required();
         return nomeAgressorValidate.validate(nomeAgressor);
     }
     validateEndereco(endereco){

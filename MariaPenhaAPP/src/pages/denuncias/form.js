@@ -1,5 +1,5 @@
 import React from 'react';
-import { Text, View, TouchableOpacity, TextInput, CheckBox } from 'react-native';
+import { Text, View, TouchableOpacity, TextInput, CheckBox, Alert } from 'react-native';
 import { Feather } from '@expo/vector-icons';
 import { withFormik } from 'formik';
 import FormStyle from './../../custom/styles/FormStyle';
@@ -7,9 +7,28 @@ import api from '../../services/api';
 import * as Yup from 'yup';
 import DenunciasStyle from './style';
 import DatePicker from 'react-native-datepicker';
+import Spinner from 'react-native-loading-spinner-overlay'
+
+
+function alertaDenuncias(title, description){
+    setTimeout(() => {
+        Alert.alert(
+            title,
+            description,
+            [
+            { text: 'OK', onPress: () => console.log('press btn ok')}
+            ],
+            { cancelable: true }
+        );
+    }, 100);
+}
 
 const Form = (props) => (
     <View style={FormStyle.containerForm}>
+        <Spinner
+          visible={props.values.spinner}
+          textContent={''}
+        />
         <View style={DenunciasStyle.containerIcone}>
             <View style={DenunciasStyle.circuloIcone}>
                 <Feather name= 'mic' size={40} color="#D44E5A" />
@@ -149,24 +168,57 @@ export default withFormik({
         email: '', 
         descricao: '',
         dataOcorrencia: ''}),
-    
+
+        // validationSchema: Yup.object().shape({
+        //     denunciaAnonima: Yup.boolean().required(),
+        //     nome: Yup.string().when('denunciaAnonima', {is: true,then: Yup.string().required('Preencha o campo de nome')}),
+        //     // nome: Yup.string().when('denunciaAnonima', {
+        //     //     is: value => !value, then: Yup.required('Preencha o campo de nome')
+        //     // })
+            
     // validationSchema: Yup.object().shape({
     //     nome: Yup.string().required('Preencha o campo de nome'),
     //     telefone: Yup.number().typeError('Telefone inválido, informe apenas números').required('Preencha o campo de telefone'),
     //     email: Yup.string().email('Digite um e-mail válido').required('Preencha o campo de email'),
     //     descricao: Yup.string().required('Preencha o campo de descrição'),
     // }),
-    handleSubmit: (values, { setSubmitting, setErrors, resetForm }) => {
-        console.log(values)
-        // api.post('/denuncias/create', values)
-        // .then(success => {
-        //     console.log('sucessssssssss ')
-        //     console.log(success.data)
-        //     resetForm();
-        // })
-        // .catch(err => {
-        //     setSubmitting(false);
-        //     setErrors({ message: err.message });
+    handleSubmit: (values, { setSubmitting, setErrors, resetForm, setValues }) => {
+        values.spinner = true;
+        setValues(values)
+        let schema = {};
+        // if(values.denunciaAnonima){
+        //     schema = Yup.object().shape({
+        //         dataOcorrencia: Yup.string().required('Preencha o campo data da ocorrência'),
+        //         nomeAgressor: Yup.string().required('Preencha o campo de nome do agressor'),
+        //     })
+        // }else{
+        //     schema = Yup.object().shape({
+        //         nome: Yup.string().required('Preencha o campo de nome')
+        //     })
+        // }
+        
+        // schema.validate(values).then(function (valid, err) {
+            api.post('/denuncias/create', values)
+            .then(success => {
+                values.spinner = false;
+                setValues(values)
+                if(success.data._id){
+                    alertaDenuncias('Sucesso', 'Denúncia registrada com sucesso.');
+                    resetForm();
+                }else{
+                    alertaDenuncias('Erro', success.data[0].message);
+                }
+            })
+            .catch(err => {
+                values.spinner = false;
+                setValues(values)
+                setErrors({ message: err.message });
+                alertaDenuncias('Erro', err.message);
+            });
+        // }).catch(function (err) {
+        //     console.log('err catch ', err)   
+        //     console.log(err.errors) 
         // });
+        
     }
 })(Form);

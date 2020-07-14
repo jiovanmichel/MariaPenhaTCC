@@ -3,7 +3,7 @@ const Joi = require('@hapi/joi');
 module.exports = class ValidateContatoSchema {
     validateContato(contato){
         const contatoValidate = Joi.object({
-            nome: Joi.string().min(5).max(100).required(),
+            nome: Joi.string().max(100).required(),
             telefone: Joi.string().min(10).required(),
             email: Joi.string().email({ minDomainSegments: 2 }).required(),
             observacao: Joi.string().required(),
@@ -14,7 +14,7 @@ module.exports = class ValidateContatoSchema {
     }
 
     validateNome(nome){
-        const nomeValidate = Joi.string().min(5).max(100).required();
+        const nomeValidate = Joi.string().max(100).required();
         return nomeValidate.validate(nome);
     }
 

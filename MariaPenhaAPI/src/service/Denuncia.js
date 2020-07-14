@@ -40,10 +40,21 @@ module.exports = class DenunaService {
         // if (error) return error.details;
     
         // return await DenunciaModel.create({});
+        let paramData = new Date(params.dataOcorrencia);
+        if(!(paramData instanceof Date && !isNaN(paramData))){
+            let splitData = params.dataOcorrencia.split('/');
+            params.dataOcorrencia = new Date(`${splitData[2]}-${splitData[1]}-${splitData[0]} 00:00`)
+        }
+        
+        // let formatarData = params.dataOcorrencia.split('/')
+        // new Date(a[2]+ '-'+  a[1]+ '-'+ a[0] + ' 00:00:00')
+        await new Promise(resolve => {
+            setTimeout(() => {resolve(true)}, 5000)
+        }) 
 
-        let pessoa = await DenunciaModel.create(params);
+        let denuncia = await DenunciaModel.create(params);
 
-        return pessoa;
+        return denuncia;
     }
 
     async update(id, params){

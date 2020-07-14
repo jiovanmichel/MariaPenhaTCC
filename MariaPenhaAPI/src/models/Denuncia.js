@@ -7,7 +7,7 @@ let DenunciaSchema = Mongoose.Schema({
     endereco: String, 
     telefone: String, 
     email: String,
-    dataOcorrencia: {type: Date, default: Date.now},
+    dataOcorrencia: Date,
     descricao: String, 
     audio: String
 });

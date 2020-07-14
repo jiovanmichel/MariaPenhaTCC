@@ -25,7 +25,7 @@ module.exports = class DuvidaService {
         const {error, value: duvida} = this.validarDuvida(duvidaParams)
         
         if (error) return error.details;
-    
+
         return await DuvidaModel.create(duvida);
     }
 

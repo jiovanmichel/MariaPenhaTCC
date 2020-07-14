@@ -1,13 +1,32 @@
 import React from 'react';
-import { Text, View, TouchableOpacity, TextInput } from 'react-native';
+import { Text, View, TouchableOpacity, TextInput, Alert } from 'react-native';
 import { Feather } from '@expo/vector-icons';
 import { withFormik } from 'formik';
 import ContatosStyle from './style';
 import api from '../../services/api';
 import * as Yup from 'yup';
+import Spinner from 'react-native-loading-spinner-overlay'
+
+function alertaDuvidas(title, description){
+    setTimeout(() => {
+        Alert.alert(
+            title,
+            description,
+            [
+            { text: 'OK', onPress: () => console.log('press btn ok')}
+            ],
+            { cancelable: true }
+        );
+    }, 100);
+}
 
 const Form = (props) => (
     <View style={ContatosStyle.containerForm}>
+        <Spinner
+          visible={props.values.spinner}
+          textContent={''}
+        //   textStyle={}
+        />
         <View style={ContatosStyle.containerInputs}>
             <TextInput
                 style={ContatosStyle.inputText}
@@ -62,7 +81,8 @@ const Form = (props) => (
 );
 
 export default withFormik({
-    mapPropsToValues: () => ({ nome: '', telefone: '', email: '', descricao: '' }),
+    enableReinitialize: true,
+    mapPropsToValues: () => ({spinner: false, nome: '', telefone: '', email: '', descricao: '' }),
    
     validationSchema: Yup.object().shape({
         nome: Yup.string().required('Preencha o campo de nome'),
@@ -70,18 +90,27 @@ export default withFormik({
         email: Yup.string().email('Digite um e-mail válido').required('Preencha o campo de email'),
         descricao: Yup.string().required('Preencha o campo de descrição'),
     }),
-
-    handleSubmit: (values, { setSubmitting, setErrors, resetForm }) => {
-        console.log(values)
+    
+    handleSubmit: (values, { setSubmitting, setErrors, resetForm, setValues }) => {
+        values.spinner = true;
+        setValues(values)
         api.post('/duvidas/create', values)
         .then(success => {
-            console.log('sucessssssssss ')
-            console.log(success.data)
-            resetForm();
+            values.spinner = false;
+            setValues(values)
+            if(success.data._id){
+                alertaDuvidas('Sucesso', 'Dúvida enviada com sucesso.');
+                resetForm();
+            }else{
+                alertaDuvidas('Erro', success.data[0].message);
+            }
         })
         .catch(err => {
-            setSubmitting(false);
+            values.spinner = false;
+            setValues(values)
             setErrors({ message: err.message });
-        });
+            alertaDuvidas('Erro', err.message);
+        })
+            
     }
 })(Form);
